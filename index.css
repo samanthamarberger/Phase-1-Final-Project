@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+    font-family: monospace;
+  }
+
+  #application-header {
+    display: flex;
+    justify-content: center;
+    background: #023020;
+    opacity: .8;
+    height: 7rem;
+    padding: 1rem;
+  }
+
+  #application-header h1 {
+      height: 6rem;
+      text-align: center;
+      color: #989898;
+      font: serif;
+  }
