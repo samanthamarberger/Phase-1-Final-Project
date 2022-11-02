@@ -16,7 +16,32 @@ body {
       height: 6rem;
       text-align: center;
       color: #989898;
-      font: serif;
+      font: sans-serif;
+      font-style: normal;
       font-size: 40px;
+      font-weight: lighter;
+  }
+
+  .container {
+      padding: 1rem;
+      background-color: #023020;
+      opacity: .8;
+      width: stretch;
+      height: auto;
+  }
+
+  /* .add-job-form{
+      width: 60%;
+  } */
+
+  .container form{
+    text-align: center;
+  }
+
+  .container h3{
+      color: #989898;
+      font: sans-serif;
+      font-style: normal;
+      font-size: 20px;
       font-weight: lighter;
   }
