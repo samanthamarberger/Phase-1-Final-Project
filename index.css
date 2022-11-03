@@ -30,10 +30,6 @@ body {
       height: auto;
   }
 
-  /* .add-job-form{
-      width: 60%;
-  } */
-
   .container form{
     text-align: center;
   }
@@ -44,4 +40,13 @@ body {
       font-style: normal;
       font-size: 20px;
       font-weight: lighter;
+  }
+
+  .input-text {
+    border-radius: 5px;
+    height: 2rem;
+    width: 60%;
+    font-size: 18px;
+    font-family: monospace;
+    margin: 3px;
   }
