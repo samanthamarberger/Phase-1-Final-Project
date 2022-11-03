@@ -7,11 +7,14 @@ document.addEventListener('DOMContentLoaded', () =>{
         //console.log(submitForm);
         let jobObj = {
             companyName: e.target.name.value,
+            position: e.target.position.value,
             imageURL: e.target.image.value
         }
         console.log(jobObj);
         e.target.name.value="";
+        e.target.position.value="";
         e.target.image.value="";
     }
+
     
 })
