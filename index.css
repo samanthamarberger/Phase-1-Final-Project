@@ -1,52 +1,65 @@
 body {
     margin: 0;
     font-family: monospace;
-  }
+}
 
-  #application-header {
+#application-header {
     display: flex;
     justify-content: center;
     background: #023020;
     opacity: .8;
     height: 7rem;
     padding: 1rem;
-  }
+}
 
-  #application-header h1 {
-      height: 6rem;
-      text-align: center;
-      color: #989898;
-      font: sans-serif;
-      font-style: normal;
-      font-size: 40px;
-      font-weight: lighter;
-  }
-
-  .container {
-      padding: 1rem;
-      background-color: #023020;
-      opacity: .8;
-      width: stretch;
-      height: auto;
-  }
-
-  .container form{
+#application-header h1 {
+    height: 6rem;
     text-align: center;
-  }
+    color: #989898;
+    font: sans-serif;
+    font-style: normal;
+    font-size: 40px;
+    font-weight: lighter;
+}
 
-  .container h3{
-      color: #989898;
-      font: sans-serif;
-      font-style: normal;
-      font-size: 20px;
-      font-weight: lighter;
-  }
+.container {
+    padding: 1rem;
+    background-color: #023020;
+    opacity: .8;
+    width: stretch;
+    height: auto;
+}
 
-  .input-text {
+.container form {
+    text-align: center;
+}
+
+.container h3 {
+    color: #989898;
+    font: sans-serif;
+    font-style: normal;
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+.input-text {
     border-radius: 5px;
     height: 2rem;
     width: 60%;
     font-size: 18px;
     font-family: monospace;
     margin: 3px;
-  }
+}
+
+.submit {
+    background-color: #00468B;
+    border-radius: 5px;
+    height: 2rem;
+    width: max-content;
+    justify-self: center;
+    margin: 3px;
+    font: sans-serif;
+    font-family: monospace;
+    color: whitesmoke;
+    font-size: 18px;
+}
