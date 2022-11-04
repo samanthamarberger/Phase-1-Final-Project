@@ -60,10 +60,32 @@ document.addEventListener('DOMContentLoaded', () => {
             rmvBtn.classList.add(`remove-btn-${jobObj.id}`);
             rmvBtn.innerText = "Remove Job";
             const interviewBtn = document.createElement('button');
-            interviewBtn.classList.add(`add-interview-${jobObj.id}`);
+            interviewBtn.setAttribute("id", `add-interview-${jobObj.id}`);
             interviewBtn.innerText = "Add interview date";
+            const popupForm = document.createElement('form');
+            popupForm.style.display = "none";
+            popupForm.setAttribute(`id`, `popupForm-${jobObj.id}`);
+            popupForm.innerHTML = `
+            <form class="add-date-form">
+                <input
+                type="text"
+                name="date"
+                value=""
+                placeholder="Enter date..."
+                class="input-text"
+                />
+                <br />
+                <input
+                type="submit"
+                name="submit"
+                value="submit"
+                class="submit"
+                />
+            </form>
+            `  
 
-            interviewBtn.addEventListener('click', () =>{
+            interviewBtn.addEventListener('click', (e) =>{
+                e.preventDefault();
                 addInterview(div, jobObj.id);
             });
             rmvBtn.addEventListener('click', () => {
@@ -76,19 +98,27 @@ document.addEventListener('DOMContentLoaded', () => {
             div.appendChild(h3);
             div.appendChild(interviewBtn);
             div.appendChild(rmvBtn);
+            div.appendChild(popupForm);
 
             document.getElementById('job-collection').appendChild(div);
     }
 
     function addInterview(div, id) {
         console.log(div);
+        const popup = document.getElementById(`popupForm-${id}`)
+        popup.style.display = 'block';
+        const interviewBtn = document.getElementById(`add-interview-${id}`);
+        popup.addEventListener('submit', (e) => {
+            e.preventDefault();
+            handleDateSubmit(popup, id);
+        });
     }
 
     function removeJobDOM(div, id) {
         // console.log(div);
         // console.log(id);
         const rmvCard = document.getElementById(`card-${id}`);
-        console.log(rmvCard);
+        //console.log(rmvCard);
         rmvCard.remove();
 
     }
@@ -104,5 +134,10 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(job => {
             console.log(job);
         })
+    }
+
+    function handleDateSubmit(popup, id) {
+        console.log(popup);
+        popup.style.display = 'none';
     }
 })
