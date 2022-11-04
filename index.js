@@ -1,6 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+    getJobs();
     const submitForm = document.getElementsByClassName('add-job-form')[0];
     submitForm.addEventListener('submit', handleSubmit)
+
+    function getJobs() {
+        fetch ("http://localhost:3000/jobs")
+        .then(res => res.json())
+        .then(jobs => {
+            for (const job of jobs){
+                addJobToTheDOM(job);
+            }
+        })
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -34,28 +45,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function addJobToTheDOM(jobObj) {
-        const div = document.createElement('div');
-        div.classList.add('card');
-        const h2 = document.createElement('h2');
-        h2.innerText = jobObj.companyName;
-        console.log(h2.innerText);
-        const img = document.createElement('img');
-        img.src = jobObj.imageURL;
-        const h3 = document.createElement('h3');
-        h3.innerText = `Job Title: ${jobObj.position}`;
-        rmvBtn = document.createElement('button');
-        rmvBtn.classList.add('remove-btn');
-        rmvBtn.innerText = "Remove Job";
-        const interviewBtn = document.createElement('button');
-        interviewBtn.classList.add('add-interview');
-        interviewBtn.innerText = "Add interview date";
+            const div = document.createElement('div');
+            div.classList.add('card');
+            const h2 = document.createElement('h2');
+            h2.innerText = jobObj.companyName;
+            console.log(h2.innerText);
+            const img = document.createElement('img');
+            img.src = jobObj.imageURL;
+            const h3 = document.createElement('h3');
+            h3.innerText = `Job Title: ${jobObj.position}`;
+            rmvBtn = document.createElement('button');
+            rmvBtn.classList.add('remove-btn');
+            rmvBtn.innerText = "Remove Job";
+            const interviewBtn = document.createElement('button');
+            interviewBtn.classList.add('add-interview');
+            interviewBtn.innerText = "Add interview date";
 
-        div.appendChild(h2);
-        div.appendChild(img);
-        div.appendChild(h3);
-        div.appendChild(rmvBtn);
-        div.appendChild(interviewBtn);
+            div.appendChild(h2);
+            div.appendChild(img);
+            div.appendChild(h3);
+            div.appendChild(rmvBtn);
+            div.appendChild(interviewBtn);
 
-        document.getElementById('job-collection').appendChild(div);
+            document.getElementById('job-collection').appendChild(div);
     }
 })
