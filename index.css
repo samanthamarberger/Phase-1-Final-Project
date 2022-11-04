@@ -77,8 +77,17 @@ body {
 
   .card button {
     font: sans-serif;
+    font-weight: lighter;
     font-family: monospace;
     font-size: 15px;
     background-color: #00468B;
     color: whitesmoke;
   }
+
+  img {  
+    height: 150px;
+    width: 100%;
+    }  
+    #center {  
+    text-align: center;  
+    }  
