@@ -9,4 +9,4 @@
 ## How to use 
 ##### This application works by submitting ones job application information. This includes the name of the company, the job title, and an image of the company logo. A card is then created on the application and stored in the server. This application also has a feature that allows you to submit the date of any interviews. The date pops up when hovering over the card. 
 
-## Now all of your jab application information can be stored in one place and you won't loose track ever again!
+## Now all of your job application information can be stored in one place and you won't loose track ever again!
