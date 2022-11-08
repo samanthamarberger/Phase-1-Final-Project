@@ -7,11 +7,30 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch ("http://localhost:3000/jobs")
         .then(res => res.json())
         .then(jobs => {
+            //DOUBLE CHECK THAT THIS COUNTS FOR ITERATION METHOD
             for (const job of jobs){
                 addJobToTheDOM(job);
+                //getInterviewDates(job);
             }
         })
     }
+
+    // function getInterviewDates(jobObj) {
+    //     fetch (`http://localhost:3000/jobs/${jobObj.id}`, {
+    //         method: "PATCH",
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             Accept: "application/json"
+    //         },
+    //         body: JSON.stringify(jobObj)
+    //     })
+    //     .then(res => res.json())
+    //     .then(jobs => {
+    //         for (const job of jobs){
+    //             addDateToTheDOM(job);
+    //         }
+    //     })
+    // }
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -45,13 +64,27 @@ document.addEventListener('DOMContentLoaded', () => {
             })
     }
 
+    function addDateToTheDOM(jobObject){
+    //     const dateReminder = document.createElement('div');
+    //     dateReminder.classList.add('dateReminder');
+    //     dateReminder.style.display = "none"
+    //     dateReminder.innerHTML = `
+    //         <h3>Your interview is schelduled on:</h3>
+    //         <h2>${jobObject.interview}</h2>
+    //     `
+    }
+
     function addJobToTheDOM(jobObj) {
+        //console.log(jobObj.interviewDate);
             const div = document.createElement('div');
             div.classList.add(`card`);
             div.setAttribute('id', `card-${jobObj.id}`);
             const h2 = document.createElement('h2');
             h2.innerText = jobObj.companyName;
-            //console.log(h2.innerText);
+            let date = document.createElement('h2');
+            date.innerText = `Interview Date: ${jobObj.interviewDate}`;
+            //console.log(date.innerText);
+            date.style.visibility= 'hidden';
             const img = document.createElement('img');
             img.src = jobObj.imageURL;
             const h3 = document.createElement('h3');
@@ -92,8 +125,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 removeJobDOM(div, jobObj.id);
                 deleteJob(jobObj.id);
             });
+            img.addEventListener("mouseover", () => {
+                showDate(jobObj);
+            });
 
             div.appendChild(h2);
+            div.appendChild(date);
             div.appendChild(img);
             div.appendChild(h3);
             div.appendChild(interviewBtn);
@@ -101,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
             div.appendChild(popupForm);
 
             document.getElementById('job-collection').appendChild(div);
-    }
+    };
 
     function addInterview(div, id) {
         console.log(div);
@@ -110,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const interviewBtn = document.getElementById(`add-interview-${id}`);
         popup.addEventListener('submit', (e) => {
             e.preventDefault();
-            handleDateSubmit(popup, id);
+            handleDateSubmit(popup);
         });
     }
 
@@ -136,8 +173,14 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
-    function handleDateSubmit(popup, id) {
+    function handleDateSubmit(popup) {
         console.log(popup);
         popup.style.display = 'none';
+    }
+
+    function showDate(jobObj){
+        const date = jobObj.interviewDate;
+        console.log(date);
+        date.style.visibility = "visible";
     }
 })
