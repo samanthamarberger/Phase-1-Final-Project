@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitForm = document.getElementsByClassName('add-job-form')[0];
     submitForm.addEventListener('submit', handleSubmit);
 
+    //acquires all data from api
     function getJobs() {
         fetch ("http://localhost:3000/jobs")
         .then(res => res.json())
@@ -10,11 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
             //DOUBLE CHECK THAT THIS COUNTS FOR ITERATION METHOD
             for (const job of jobs){
                 addJobToTheDOM(job);
-                //getInterviewDates(job);
             }
         })
     }
 
+    //Supposed to update the date value on the server 
     // function getInterviewDates(jobObj) {
     //     fetch (`http://localhost:3000/jobs/${jobObj.id}`, {
     //         method: "PATCH",
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //     })
     // }
 
+    //Function that takes care of new job being added to the DOM 
     function handleSubmit(e) {
         e.preventDefault();
         //console.log(submitForm);
@@ -49,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.target.image.value = "";
     }
 
+    //adds new job to the server
     function createNewJob(jobObject) {
         fetch('http://localhost:3000/jobs', {
             method: 'POST',
@@ -64,16 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
     }
 
-    function addDateToTheDOM(jobObject){
-    //     const dateReminder = document.createElement('div');
-    //     dateReminder.classList.add('dateReminder');
-    //     dateReminder.style.display = "none"
-    //     dateReminder.innerHTML = `
-    //         <h3>Your interview is schelduled on:</h3>
-    //         <h2>${jobObject.interview}</h2>
-    //     `
-    }
-
+    //creates cards 
     function addJobToTheDOM(jobObj) {
         //console.log(jobObj.interviewDate);
             const div = document.createElement('div');
@@ -81,10 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
             div.setAttribute('id', `card-${jobObj.id}`);
             const h2 = document.createElement('h2');
             h2.innerText = jobObj.companyName;
-            let date = document.createElement('h2');
+            const date = document.createElement('h2');
             date.innerText = `Interview Date: ${jobObj.interviewDate}`;
+            date.setAttribute('id', `interviewDate-${jobObj.id}`);
             //console.log(date.innerText);
-            date.style.visibility= 'hidden';
+            date.style.display = 'none';
             const img = document.createElement('img');
             img.src = jobObj.imageURL;
             const h3 = document.createElement('h3');
@@ -122,12 +117,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 addInterview(div, jobObj.id);
             });
             rmvBtn.addEventListener('click', () => {
-                removeJobDOM(div, jobObj.id);
+                removeJobDOM(jobObj.id);
                 deleteJob(jobObj.id);
             });
-            img.addEventListener("mouseover", () => {
-                showDate(jobObj);
-            });
+            // img.addEventListener("mouseover", () => {
+            //     showDate(jobObj);
+            // });
 
             div.appendChild(h2);
             div.appendChild(date);
@@ -140,26 +135,26 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('job-collection').appendChild(div);
     };
 
+    //submit pop up for the date is shown and data is entered - sends event to submit handler
     function addInterview(div, id) {
-        console.log(div);
+        //console.log(div);
         const popup = document.getElementById(`popupForm-${id}`)
         popup.style.display = 'block';
         const interviewBtn = document.getElementById(`add-interview-${id}`);
         popup.addEventListener('submit', (e) => {
             e.preventDefault();
-            handleDateSubmit(popup);
+            handleDateSubmit(e);
         });
     }
 
-    function removeJobDOM(div, id) {
-        // console.log(div);
-        // console.log(id);
+    // removes card from DOM
+    function removeJobDOM(id) {
         const rmvCard = document.getElementById(`card-${id}`);
-        //console.log(rmvCard);
         rmvCard.remove();
 
     }
 
+    // removes card from server
     function deleteJob(id){
         fetch(`http://localhost:3000/jobs/${id}`, {
             method: "DELETE",
@@ -173,14 +168,19 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
-    function handleDateSubmit(popup) {
-        console.log(popup);
-        popup.style.display = 'none';
+    //Get value from date submit and have it be set to the 'date' in the DOM
+    function handleDateSubmit(e) { 
+        const dateObj = {
+            date: e.target.name.value
+        }
+        console.log(dateObj);
+        //popup.style.display = 'none';
     }
 
+    //Unblocks date in the DOM when mouseover occurs 
     function showDate(jobObj){
         const date = jobObj.interviewDate;
         console.log(date);
-        date.style.visibility = "visible";
+        date.style.display = "block";
     }
 })
