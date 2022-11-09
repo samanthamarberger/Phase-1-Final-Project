@@ -11,4 +11,4 @@
 
 ## Here's a link to an overview of my application: https://youtu.be/PUHrZOe8plY
 
-## Now all of your job application information can be stored in one place and you won't loose track ever again!
+## Now all of your job application information can be stored in one place and you won't lose track ever again!
