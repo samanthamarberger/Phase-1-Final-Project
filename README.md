@@ -7,7 +7,7 @@
 ##### The data is stored in a db.json file. In order to access the data, the JSON server must be running. Running json-server --watch db.json will start your server. The data will be stored and visible at http://localhost:3000/jobs 
 
 ## How to use 
-##### This application works by submitting ones job application information. This includes the name of the company, the job title, and an image of the company logo. A card is then created on the application and stored in the server. This application also has a feature that allows you to submit the date of any interviews. The date pops up when hovering over the card. 
+##### This application works by submitting ones job application information. This includes the name of the company, the job title, and an image of the company logo. A card is then created on the application and stored in the server. This application also has a feature that allows you to click a button that will allow you to submit the date of any interviews, as well as a button that romoves the job completely. The date entered can be seen when mousing over the image logo. 
 
 ## Here's a link to an overview of my application: https://youtu.be/PUHrZOe8plY
 
